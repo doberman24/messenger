@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <title>Messenger</title>
+</head>
+<body>
+    <main class="main-page">
+        <section class="main-background"></section>
+        <section class="messenger">
+            <div class="output-messages">
+                <ul>
+                    <li class="message"><p>Первое сообщение</p><span></span></li>
+                    <li class="message"><p>Второе сообщение</p><span></span></li>
+                    <li class="message"><p>Третье сообщение</p><span></span></li>
+                    <li class="message"><p>Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое</p><span></span></li>
+                    <li class="message"><p>Пятое сообщение</p><span></span></li>
+                    <li class="message"><p>Первое сообщение</p><span></span></li>
+                    <li class="message"><p>Второе сообщение</p><span class="del"></span></li>
+                    <li class="message"><p>Третье сообщение</p><span></span></li>
+                    <li class="message"><p>Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое. Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое</p><span></span></li>
+                    <li class="message"><p></p>Пятое сообщение</p><span></span></li>
+                </ul>
+            </div>
+            <div class="input-messages">
+                <input name="set-message" type="text" placeholder="Введите сообщение...">
+                <button type="submit"></button>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.querySelector('.message span').classList.add('del');
+
+        const newItem = document.createElement('li');
+        newItem.classList.add('message');
+        const newMessage = document.createElement('p');
+        newMessage.textContent = 'Новое сообщение!'
+        const newDel = document.createElement('span');
+        newDel.classList.add('del');
+        const item = document.querySelector('.output-messages ul');
+        
+        newItem.appendChild(newMessage);
+        newItem.appendChild(newDel);
+        item.appendChild(newItem);
+
+    </script>
+</body>
+</html>
