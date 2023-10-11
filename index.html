@@ -14,40 +14,22 @@
         <section class="main-background"></section>
         <section class="messenger">
             <div class="output-messages">
-                <ul>
-                    <li class="message"><p>Первое сообщение</p><span></span></li>
-                    <li class="message"><p>Второе сообщение</p><span></span></li>
-                    <li class="message"><p>Третье сообщение</p><span></span></li>
-                    <li class="message"><p>Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое</p><span></span></li>
-                    <li class="message"><p>Пятое сообщение</p><span></span></li>
-                    <li class="message"><p>Первое сообщение</p><span></span></li>
-                    <li class="message"><p>Второе сообщение</p><span class="del"></span></li>
-                    <li class="message"><p>Третье сообщение</p><span></span></li>
-                    <li class="message"><p>Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое. Четвертое сообщение, еще одно сообщение и еще одно, и еще, и еще чертвертое</p><span></span></li>
-                    <li class="message"><p></p>Пятое сообщение</p><span></span></li>
-                </ul>
+                <ul></ul>
             </div>
-            <div class="input-messages">
+            <form class="input-messages">
                 <input name="set-message" type="text" placeholder="Введите сообщение...">
                 <button type="submit"></button>
-            </div>
+            </form>
+
+            <template id="template-message">
+                <li class="message">
+                    <p>Первое сообщение</p>
+                    <span></span>
+                </li>
+            </template>
+            
         </section>
     </main>
-    <script>
-        document.querySelector('.message span').classList.add('del');
-
-        const newItem = document.createElement('li');
-        newItem.classList.add('message');
-        const newMessage = document.createElement('p');
-        newMessage.textContent = 'Новое сообщение!'
-        const newDel = document.createElement('span');
-        newDel.classList.add('del');
-        const item = document.querySelector('.output-messages ul');
-        
-        newItem.appendChild(newMessage);
-        newItem.appendChild(newDel);
-        item.appendChild(newItem);
-
-    </script>
+    <script type="module" src="script/script.js"></script>
 </body>
 </html>
