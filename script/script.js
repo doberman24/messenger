@@ -1,5 +1,3 @@
-import {num} from './new.js';
-
 const listMessage = document.querySelector('.output-messages ul');
 let messages = listMessage.children;
 
@@ -22,25 +20,43 @@ for (let message of messages) {
 }
 
 
-const sendMessage = document.querySelector('.input-messages').addEventListener('submit', (event) => {
+const putMessage = (message) => {
+    addDeleteIcon(message);
+    listMessage.appendChild(message);
+}
+
+
+const sendMessage = document.querySelector('.input-messages').addEventListener('submit', async (event) => {
     event.preventDefault();
     const inputMessage = document.querySelector('.input-messages input');
     if (inputMessage.value) {
-        const message = addMessage(inputMessage.value);
-        addDeleteIcon(message);
-        listMessage.appendChild(message);
+        const userMessage = addMessage(inputMessage.value);
+        putMessage(userMessage);
+        const serverMessage = await testRequest(inputMessage.value);
+        putMessage(addMessage(serverMessage, true));
         inputMessage.value = '';
     }
 });
 
 
-const addMessage = (message) => {
+const checkUserServer = (statusMessage, check) => {
+    if (check) {
+        statusMessage.classList.remove('user');
+        statusMessage.classList.add('server-response');
+    } else {
+        statusMessage.classList.add('user');
+        statusMessage.classList.remove('server-response');
+    }
+}
+
+
+const addMessage = (message, server = false) => {
     const messageTemplate = document.getElementById('template-message').content;
     const messageItem = messageTemplate.querySelector('.message');
+    checkUserServer(messageItem, server);
     messageItem.querySelector('p').textContent = message;
     return messageItem.cloneNode(true);
 }
-
 
 // const addMessage = (message) => {
 //     const newMessage = document.createElement('li');
@@ -51,4 +67,10 @@ const addMessage = (message) => {
 //     contentMessage.textContent = message;
 //     return newMessage;
 // }
-console.log(num);
+
+const testRequest = async (message) => {
+    const text = fetch(`http://localhost:3000?message=${message}`);
+    const textMessage = (await text).text();
+    // console.log((await text).status);
+    return await textMessage;
+}
